@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio website built with HTML & CSS"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b0e14;
+        --card: #121723;
+        --muted: #9aa4b2;
+        --text: #e6edf3;
+        --accent: #7c5cff;
+        --accent-2: #2dd4bf;
+        --ring: rgba(124, 92, 255, 0.35);
+        --border: #202636;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        --radius: 16px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background: radial-gradient(
+            1200px 800px at 100% -10%,
+            rgba(124, 92, 255, 0.15),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at -10% 0%,
+            rgba(45, 212, 191, 0.12),
+            transparent 50%
+          ),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      /* Layout */
+      .container {
+        width: min(1100px, 90%);
+        margin-inline: auto;
+      }
+      section {
+        padding: 84px 0;
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(11, 14, 20, 0.55);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .badge {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .nav a {
+        color: var(--text);
+        text-decoration: none;
+        opacity: 0.9;
+      }
+      .links {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #0f1422;
+        color:white;
+        box-shadow: var(--shadow);
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        box-shadow: 0 10px 25px var(--ring);
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 4vw, 54px);
+        line-height: 1.1;
+        margin: 0 0 12px;
+      }
+      .hero p {
+        color: var(--muted);
+        font-size: clamp(15px, 1.6vw, 18px);
+      }
+      .hero .cta {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0)
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+      .avatar {
+        aspect-ratio: 1/1;
+        width: 100%;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          135deg,
+          rgba(124, 92, 255, 0.25),
+          rgba(45, 212, 191, 0.25)
+        );
+        border: 1px dashed var(--border);
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* Grid helpers */
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      /* Section headings */
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(22px, 2.4vw, 32px);
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      /* Projects */
+      .project {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, #0f1422, rgba(15, 20, 34, 0.7));
+      }
+      .project .thumb {
+        aspect-ratio: 16/9;
+        background: #0b1220;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+      .thumb::after {
+        content: "Preview";
+        position: absolute;
+        inset: auto 12px 12px auto;
+        font-size: 12px;
+        color: var(--muted);
+        background: #0b1220;
+        border: 1px solid var(--border);
+        padding: 4px 8px;
+        border-radius: 999px;
+      }
+      .project .content {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+      .project a {
+        text-decoration: none;
+        color: var(--text);
+        opacity: 0.95;
+      }
+      .project a:hover {
+        color: var(--accent-2);
+      }
+
+      /* Skills */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chip {
+        border: 1px solid var(--border);
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #0f1422;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* Contact */
+      form {
+        display: grid;
+        gap: 12px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: #0f1422;
+        color: var(--text);
+      }
+      input:focus,
+      textarea:focus {
+        outline: 2px solid var(--accent);
+        box-shadow: 0 0 0 6px var(--ring);
+        border-color: var(--accent);
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        padding: 28px 0;
+        text-align: center;
+      }
+
+      /* Responsive */
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+        .links {
+          display: none;
+        }
+        .container {
+          width: min(900px, 92%);
+        }
+      }
+      .avatar-img {
+        max-width: 60%; /* jitna % chhota karna ho utna set karo (ex: 30%, 50%) */
+        height: auto;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        display: block;
+        margin: 0 auto; /* center karne ke liye */
+      }
+      .thumb img {
+        width: 100%; /* card ke hisaab se full width */
+        height: 180px; /* fix height sab ke liye same */
+        object-fit: cover; /* image crop ho kar box me fit hogi */
+        border-radius: 8px; /* optional rounded edges */
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Nav -->
+    <header>
+      <div class="container nav">
+        <div>
+          <div class="brand">Manmeet Singh Mangat</div>
+          <div class="badge">Front-end Developer • HTML & CSS</div>
+        </div>
+        <nav class="links" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <a
+            class="btn"
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="container hero">
+      <div>
+        <span class="pill">🚀 Available for work</span>
+        <h1>
+          Hi, I'm
+          <span style="color: var(--accent-2)">Manmeet Singh Mangat</span> — I
+          build clean, responsive websites.
+        </h1>
+        <p>
+          I’m a front‑end developer focused on crafting accessible, performant
+          user interfaces with semantic HTML and modern CSS. Below is a
+          selection of my work from this course.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="avatar">
+          <img
+            src="../manmeet_project/images/avatar.jpg"
+            alt="My Photo"
+            class="avatar-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>Who I am & how I work</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <p>
+              I create accessible, responsive layouts with semantic markup and
+              modern CSS. I care about clarity, performance, and small design
+              details that make a big difference. When I'm not coding, I explore
+              UI animation and design systems.
+            </p>
+            <p>
+              <strong>Currently learning:</strong> Flexbox, Grid, CSS variables,
+              and responsive patterns.
+            </p>
+          </div>
+          <div class="card">
+            <ul>
+              <li>📍 Based in Toronto</li>
+              <li>🕸️ Focus: HTML, CSS, a little JS</li>
+              <li>✅ Open to internships & freelance</li>
+              <li>📧 Email: ManmeetSingh.Mangat@my-aolcc.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Course work & practice builds</p>
+        </div>
+        <div class="grid grid-3">
+          <!-- Project 1 -->
+          <article class="project">
+            <div class="thumb">
+              <img
+                src="../manmeet_project/images/port2.jpg"
+                alt="Landing Page Preview"
+                class="thumb-img"
+              />
+            </div>
+            <div class="content">
+              <h3>
+                <a href="" target="" rel="noreferrer"
+                  >Responsive Landing Page</a
+                >
+              </h3>
+              <p style="color: var(--muted)">
+                A clean, mobile-first landing page using semantic HTML,
+                Flexbox/Grid, and utility classes.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS Grid</span>
+                <span class="tag">Responsive</span>
+              </div>
+            </div>
+          </article>
+          <!-- Project 2 -->
+          <article class="project">
+            <div class="thumb">
+              <img
+                src="../manmeet_project/images/port5.jpg"
+                class="thumb-img"
+                alt="Portfolio preview"
+              />
+            </div>
+            <div class="content">
+              <h3>
+                <a href="" target="" rel="noreferrer"
+                  >Personal Portfolio</a
+                >
+              </h3>
+              <p style="color: var(--muted)">
+                This website! Built with accessible markup, custom properties,
+                and a glassy UI style.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS Variables</span>
+                <span class="tag">A11y</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+            <article class="project">
+            <div class="thumb">
+              <img
+                src="../manmeet_project/images/port4.jpg"
+                class="thumb-img"
+                alt="Portfolio preview"
+              />
+            </div>
+            <div class="content">
+              <h3>
+                <a href="" target="" rel="noreferrer"
+                  >Component Library</a
+                >
+              </h3>
+              <p style="color: var(--muted)">
+                TReusable cards, buttons, and forms with consistent spacing,
+                radius, and shadow tokens.
+              </p>
+              <div class="tags">
+                <span class="tag">Design System</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Utilities</span>
+              </div>
+            </div>
+          </article>
+      
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p>Tools & technologies</p>
+        </div>
+        <div class="card">
+          <div class="skills">
+            <span class="chip">Semantic HTML5</span>
+            <span class="chip">Modern CSS</span>
+            <span class="chip">Flexbox</span>
+            <span class="chip">CSS Grid</span>
+            <span class="chip">Responsive Design</span>
+            <span class="chip">Accessibility</span>
+            <span class="chip">Git & GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Let’s build something together</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <form action="https://formspree.io/f/your-id" method="POST">
+              <label>
+                Name
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
+              </label>
+              <label>
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+              <label>
+                Message
+                <textarea
+                  name="message"
+                  placeholder="Tell me about your project"
+                  required
+                ></textarea>
+              </label>
+              <button class="btn" type="submit">Send Message</button>
+            </form>
+            <p style="color: var(--muted); margin-top: 10px">
+              <!-- Tip: Replace the <code>action</code> with your own Formspree or
+              backend endpoint. -->
+            </p>
+          </div>
+          <div class="card">
+            <h3>Elsewhere</h3>
+            <p><a href="mailto:ManmeetSingh.Mangat@my-aolcc.com">ManmeetSingh.Mangat@my-aolcc.com</a></p>
+            <p>
+              <a
+                href="https://github.com/ManmeetMangat"
+                target="_blank"
+                rel="noreferrer"
+                >https://github.com/ManmeetMangat</a
+              >
+            </p>
+            <!-- <p>
+              <a
+                href="https://www.linkedin.com/in/yourprofile"
+                target="_blank"
+                rel="noreferrer"
+                >linkedin.com/in/yourprofile</a
+              >
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        © <span id="y"></span> Manmeet Singh Mangat • Built with HTML & CSS
+      </div>
+    </footer>
+
+    <script>
+      // Set current year
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
