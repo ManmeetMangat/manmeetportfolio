@@ -3,7 +3,7 @@
 This repository contains my HTML & CSS course work and final portfolio website.
 
 ## Live Website
-- URL: https://<your-username>.github.io/<repo>/
+- URL: https://manmeetmangat.github.io/manmeetportfolio/
 
 ## Projects Completed in This Course
 1. **Responsive Landing Page** – Mobile-first layout using Flexbox & Grid, semantic HTML, and custom properties.
@@ -16,3 +16,4 @@ This repository contains my HTML & CSS course work and final portfolio website.
 
 ## How to Run Locally
 Open `index.html` in your browser (no build step needed).
+
