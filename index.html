@@ -1,13 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Portfolio</title>
-    <meta
-      name="description"
-      content="Portfolio website built with HTML & CSS"
-    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Manmeet Singh Mangat — Portfolio</title>
+    <meta name="description" content="Front-end portfolio — Manmeet Singh Mangat" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,587 +12,369 @@
       rel="stylesheet"
     />
     <style>
-      :root {
-        --bg: #0b0e14;
-        --card: #121723;
-        --muted: #9aa4b2;
-        --text: #e6edf3;
-        --accent: #7c5cff;
-        --accent-2: #2dd4bf;
-        --ring: rgba(124, 92, 255, 0.35);
-        --border: #202636;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-        --radius: 16px;
+      :root{
+        --bg:#0b0e14;
+        --card:#0f1521;
+        --muted:#9aa4b2;
+        --text:#e6edf3;
+        --accent:#7c5cff;
+        --accent-2:#2dd4bf;
+        --ring: rgba(124,92,255,0.18);
+        --border:#202636;
+        --shadow: 0 10px 30px rgba(0,0,0,0.45);
+        --radius:16px;
+        --glass: rgba(255,255,255,0.02);
+        --glass-2: rgba(255,255,255,0.03);
       }
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        color: var(--text);
-        background: radial-gradient(
-            1200px 800px at 100% -10%,
-            rgba(124, 92, 255, 0.15),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 600px at -10% 0%,
-            rgba(45, 212, 191, 0.12),
-            transparent 50%
-          ),
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;
+        min-height:100%;
+        font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+        background:
+          radial-gradient(1200px 800px at 100% -10%, rgba(124,92,255,0.12), transparent 60%),
+          radial-gradient(900px 600px at -10% 0%, rgba(45,212,191,0.10), transparent 50%),
           var(--bg);
-        line-height: 1.6;
+        color:var(--text);
+        line-height:1.6;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        padding-bottom:40px;
       }
 
-      /* Layout */
-      .container {
-        width: min(1100px, 90%);
-        margin-inline: auto;
-      }
-      section {
-        padding: 84px 0;
-      }
+      .container{width:min(1100px,92%);margin:0 auto}
 
       /* Header */
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(10px);
-        background: rgba(11, 14, 20, 0.55);
-        border-bottom: 1px solid var(--border);
+      header{
+        position:sticky;top:10px;z-index:60;
+        background: linear-gradient(180deg, rgba(11,14,20,0.55), rgba(11,14,20,0.35));
+        backdrop-filter: blur(8px);
+        border-radius:12px;
+        margin:10px auto;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+        border:1px solid var(--border);
       }
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 0;
+      .nav{
+        display:flex;align-items:center;justify-content:space-between;
+        gap:16px;padding:12px;
       }
-      .brand {
-        font-weight: 800;
-        letter-spacing: 0.3px;
+      .brand{
+        display:flex;flex-direction:column;
       }
-      .badge {
-        font-size: 12px;
-        color: var(--muted);
+      .brand .name{font-weight:800;letter-spacing:0.3px}
+      .badge{font-size:12px;color:var(--muted)}
+      nav.links{display:flex;gap:18px;align-items:center}
+      nav.links a{color:var(--text);text-decoration:none;opacity:0.95;padding:8px 6px;border-radius:8px}
+      nav.links a:focus{outline:2px solid var(--ring)}
+      nav.links a.active{color:var(--accent);box-shadow: inset 0 -2px 0 var(--accent)}
+      .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:#0f1422;box-shadow:var(--shadow);cursor:pointer;text-decoration:none;color:var(--text)}
+      .btn:hover{border-color:var(--accent);box-shadow:0 10px 25px var(--ring)}
+
+      /* Hamburger for mobile */
+      .hamburger{
+        display:none;
+        width:44px;height:36px;border-radius:10px;border:1px solid var(--border);
+        background:transparent;align-items:center;justify-content:center;cursor:pointer;
       }
-      .nav a {
-        color: var(--text);
-        text-decoration: none;
-        opacity: 0.9;
-      }
-      .links {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: #0f1422;
-        color:white;
-        box-shadow: var(--shadow);
-      }
-      .btn:hover {
-        border-color: var(--accent);
-        box-shadow: 0 10px 25px var(--ring);
-      }
+      .hamburger .bar{width:18px;height:2px;background:var(--text);position:relative}
+      .hamburger .bar::after,.hamburger .bar::before{content:"";position:absolute;left:0;right:0;height:2px;background:var(--text)}
+      .hamburger .bar::before{top:-6px} .hamburger .bar::after{bottom:-6px}
 
       /* Hero */
-      .hero {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 32px;
-        align-items: center;
+      section{padding:84px 0}
+      .hero{
+        display:grid;grid-template-columns:1.2fr 0.8fr;gap:32px;align-items:center;
       }
-      .hero h1 {
-        font-size: clamp(32px, 4vw, 54px);
-        line-height: 1.1;
-        margin: 0 0 12px;
-      }
-      .hero p {
-        color: var(--muted);
-        font-size: clamp(15px, 1.6vw, 18px);
-      }
-      .hero .cta {
-        margin-top: 20px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .pill {
-        display: inline-block;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .card {
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.02),
-          rgba(255, 255, 255, 0)
-        );
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 22px;
-        box-shadow: var(--shadow);
-      }
-      .avatar {
-        aspect-ratio: 1/1;
-        width: 100%;
-        border-radius: var(--radius);
-        background: linear-gradient(
-          135deg,
-          rgba(124, 92, 255, 0.25),
-          rgba(45, 212, 191, 0.25)
-        );
-        border: 1px dashed var(--border);
-        display: grid;
-        place-items: center;
-        color: var(--text);
-        font-weight: 600;
+      .hero h1{font-size:clamp(32px,4vw,54px);line-height:1.05;margin:0}
+      .hero p{color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
+      .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+      .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+
+      .card{
+        background: linear-gradient(180deg, var(--glass), transparent);
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        padding:22px;
+        box-shadow:var(--shadow);
       }
 
+      /* Avatar */
+      .avatar{
+        aspect-ratio:1/1;width:100%;border-radius:12px;background:linear-gradient(135deg, rgba(124,92,255,0.12), rgba(45,212,191,0.08));border:1px dashed var(--border);display:grid;place-items:center;color:var(--text);font-weight:600;overflow:hidden;position:relative;transform-style:preserve-3d;transition:transform .18s ease, box-shadow .18s ease;
+      }
+      .avatar img{max-width:70%;height:auto;border-radius:12px;border:1px solid var(--border);display:block}
+      .avatar .initials{font-size:36px;opacity:0.95}
+
       /* Grid helpers */
-      .grid {
-        display: grid;
-        gap: 16px;
-      }
-      .grid-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-      .grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .grid{display:grid;gap:16px}
+      .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      @media (max-width:880px){
+        .hero{grid-template-columns:1fr}
+        .grid-3{grid-template-columns:1fr}
+        .grid-2{grid-template-columns:1fr}
+        nav.links{display:none}
+        .hamburger{display:flex}
+        header{margin:6px}
       }
 
       /* Section headings */
-      .section-head {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        margin-bottom: 22px;
-      }
-      .section-head h2 {
-        margin: 0;
-        font-size: clamp(22px, 2.4vw, 32px);
-      }
-      .section-head p {
-        margin: 0;
-        color: var(--muted);
-      }
+      .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+      .section-head h2{margin:0;font-size:clamp(22px,2.4vw,32px)}
+      .section-head p{margin:0;color:var(--muted)}
 
-      /* Projects */
-      .project {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: linear-gradient(180deg, #0f1422, rgba(15, 20, 34, 0.7));
+      /* Project cards */
+      .project{display:flex;flex-direction:column;gap:12px;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,#0f1422, rgba(15,20,34,0.7));transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;position:relative}
+      .project .thumb{position:relative;overflow:hidden}
+      .project .thumb img{width:100%;height:180px;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+      .project:hover .thumb img{transform:scale(1.08)}
+      .project .content{padding:16px;display:flex;flex-direction:column;gap:10px}
+      .tags{display:flex;gap:8px;flex-wrap:wrap}
+      .tag{font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+      .project .overlay{
+        position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
       }
-      .project .thumb {
-        aspect-ratio: 16/9;
-        background: #0b1220;
-        border-bottom: 1px solid var(--border);
-        position: relative;
+      .project .viewbtn{
+        pointer-events:auto;opacity:0;transform:translateY(8px);transition:opacity .28s, transform .28s;
+        background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#051217;border:none;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;
       }
-      .thumb::after {
-        content: "Preview";
-        position: absolute;
-        inset: auto 12px 12px auto;
-        font-size: 12px;
-        color: var(--muted);
-        background: #0b1220;
-        border: 1px solid var(--border);
-        padding: 4px 8px;
-        border-radius: 999px;
-      }
-      .project .content {
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .tag {
-        font-size: 12px;
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        color: var(--muted);
-      }
-      .project a {
-        text-decoration: none;
-        color: var(--text);
-        opacity: 0.95;
-      }
-      .project a:hover {
-        color: var(--accent-2);
-      }
+      .project:hover .viewbtn{opacity:1;transform:none;pointer-events:auto}
 
       /* Skills */
-      .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+      .skills{display:flex;flex-wrap:wrap;gap:10px}
+      .chip{
+        border:1px solid var(--border);padding:10px 12px;border-radius:12px;background:#0f1422;color:var(--text);font-weight:600;transition:transform .18s, box-shadow .18s, border-color .18s;
       }
-      .chip {
-        border: 1px solid var(--border);
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #0f1422;
-        color: var(--text);
-        font-weight: 600;
-      }
+      .chip:hover{transform:translateY(-6px);box-shadow:0 12px 30px var(--ring);border-color:var(--accent-2)}
 
-      /* Contact */
-      form {
-        display: grid;
-        gap: 12px;
+      /* Contact form - floating labels */
+      form{display:grid;gap:12px}
+      label.field{position:relative;display:block}
+      label.field input,
+      label.field textarea{
+        width:100%;padding:14px;border-radius:12px;border:1px solid var(--border);background:#0f1422;color:var(--text);font-size:15px;resize:vertical;
       }
-      input,
-      textarea {
-        width: 100%;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid var(--border);
-        background: #0f1422;
-        color: var(--text);
+      /* trick: placeholder=" " to enable :placeholder-shown */
+      label.field span.flabel{
+        position:absolute;left:14px;top:12px;color:var(--muted);font-size:13px;pointer-events:none;transition:transform .18s ease, font-size .18s, color .18s;
       }
-      input:focus,
-      textarea:focus {
-        outline: 2px solid var(--accent);
-        box-shadow: 0 0 0 6px var(--ring);
-        border-color: var(--accent);
+      label.field input:focus,
+      label.field textarea:focus{outline:2px solid var(--accent);box-shadow:0 0 0 8px var(--ring);border-color:var(--accent)}
+      label.field input:focus + .flabel,
+      label.field textarea:focus + .flabel,
+      label.field input:not(:placeholder-shown) + .flabel,
+      label.field textarea:not(:placeholder-shown) + .flabel{
+        transform:translateY(-12px) scale(0.86);color:var(--accent);
       }
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
+      .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      @media (max-width:680px){ .form-row{grid-template-columns:1fr} }
+
+      .error{color:#ff8a8a;font-size:13px;margin-top:6px}
+      .success{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04121a;padding:12px;border-radius:10px;margin-top:10px;font-weight:700;text-align:center}
 
       /* Footer */
-      footer {
-        border-top: 1px solid var(--border);
-        color: var(--muted);
-        padding: 28px 0;
-        text-align: center;
-      }
+      footer{border-top:1px solid var(--border);color:var(--muted);padding:28px 0;text-align:center;margin-top:40px}
+      .socials{display:flex;gap:10px;justify-content:center;margin-top:8px}
+      .socials a{display:inline-flex;padding:8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);text-decoration:none}
 
-      /* Responsive */
-      @media (max-width: 880px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-        .grid-3 {
-          grid-template-columns: 1fr;
-        }
-        .grid-2 {
-          grid-template-columns: 1fr;
-        }
-        .links {
-          display: none;
-        }
-        .container {
-          width: min(900px, 92%);
-        }
-      }
-      .avatar-img {
-        max-width: 60%; /* jitna % chhota karna ho utna set karo (ex: 30%, 50%) */
-        height: auto;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        display: block;
-        margin: 0 auto; /* center karne ke liye */
-      }
-      .thumb img {
-        width: 100%; /* card ke hisaab se full width */
-        height: 180px; /* fix height sab ke liye same */
-        object-fit: cover; /* image crop ho kar box me fit hogi */
-        border-radius: 8px; /* optional rounded edges */
-        display: block;
+      /* Scroll reveal */
+      .reveal{opacity:0;transform:translateY(12px);transition:opacity .7s ease, transform .7s ease}
+      .reveal.in-view{opacity:1;transform:none}
+
+      /* small utilities */
+      .muted{color:var(--muted)}
+      .small{font-size:13px}
+
+      @media (prefers-reduced-motion:reduce){
+        *{transition:none !important;animation:none !important}
       }
     </style>
   </head>
   <body>
     <!-- Header / Nav -->
-    <header>
+    <header role="banner" aria-label="Main header">
       <div class="container nav">
-        <div>
-          <div class="brand">Manmeet Singh Mangat</div>
+        <div class="brand" aria-hidden="false">
+          <div class="name">Manmeet Singh Mangat</div>
           <div class="badge">Front-end Developer • HTML & CSS</div>
         </div>
-        <nav class="links" aria-label="Primary">
+
+        <nav class="links" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
-          <a
-            class="btn"
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noreferrer"
-            >GitHub</a
-          >
+          <a class="btn" href="https://github.com/ManmeetMangat" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
+
+        <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <!-- mobile nav -->
+      <div id="mobile-nav" style="display:none" aria-hidden="true">
+        <div class="container" style="padding:10px 14px;">
+          <nav style="display:flex;flex-direction:column;gap:8px;">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+            <a class="btn" href="https://github.com/ManmeetMangat" target="_blank" rel="noreferrer">GitHub</a>
+          </nav>
+        </div>
       </div>
     </header>
 
     <!-- Hero -->
     <section class="container hero">
-      <div>
+      <div class="reveal">
         <span class="pill">🚀 Available for work</span>
         <h1>
-          Hi, I'm
-          <span style="color: var(--accent-2)">Manmeet Singh Mangat</span> — I
-          build clean, responsive websites.
+          Hi, I'm <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Manmeet Singh Mangat</span>
+          — I build clean, responsive websites.
         </h1>
-        <p>
-          I’m a front‑end developer focused on crafting accessible, performant
-          user interfaces with semantic HTML and modern CSS. Below is a
-          selection of my work from this course.
-        </p>
+        <p>I’m a front-end developer focused on crafting accessible, performant user interfaces with semantic HTML and modern CSS. Below is a selection of my work.</p>
         <div class="cta">
           <a class="btn" href="#projects">View Projects</a>
           <a class="btn" href="#contact">Contact Me</a>
         </div>
       </div>
-      <div class="card">
-        <div class="avatar">
-          <img
-            src="../manmeetportfolio/images/avatar.jpg"
-            alt="My Photo"
-            class="avatar-img"
-          />
+
+      <div class="card reveal" id="avatar-card" aria-hidden="false">
+        <div class="avatar" id="avatar" role="img" aria-label="Photo of Manmeet (avatar)">
+          <!-- fallback to initials if image missing -->
+          <img src="../manmeetportfolio/images/avatar.jpg" alt="Manmeet Singh Mangat" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <div class="initials" style="display:none">MS</div>
         </div>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>About</h2>
-          <p>Who I am & how I work</p>
+    <section id="about" class="container reveal">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>Who I am & how I work</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <p>I create accessible, responsive layouts with semantic markup and modern CSS. I care about clarity, performance, and small design details that make a big difference. When I'm not coding, I explore UI animation and design systems.</p>
+          <p><strong>Currently learning:</strong> Flexbox, Grid, CSS variables, and responsive patterns.</p>
         </div>
-        <div class="grid grid-2">
-          <div class="card">
-            <p>
-              I create accessible, responsive layouts with semantic markup and
-              modern CSS. I care about clarity, performance, and small design
-              details that make a big difference. When I'm not coding, I explore
-              UI animation and design systems.
-            </p>
-            <p>
-              <strong>Currently learning:</strong> Flexbox, Grid, CSS variables,
-              and responsive patterns.
-            </p>
-          </div>
-          <div class="card">
-            <ul>
-              <li>📍 Based in Toronto</li>
-              <li>🕸️ Focus: HTML, CSS, a little JS</li>
-              <li>✅ Open to internships & freelance</li>
-              <li>📧 Email: ManmeetSingh.Mangat@my-aolcc.com</li>
-            </ul>
-          </div>
+        <div class="card">
+          <ul class="muted small" style="margin:0;padding-left:18px">
+            <li>📍 Based in Toronto</li>
+            <li>🕸️ Focus: HTML, CSS, a little JS</li>
+            <li>✅ Open to internships & freelance</li>
+            <li>📧 Email: <a href="mailto:ManmeetSingh.Mangat@my-aolcc.com" style="color:var(--text)">ManmeetSingh.Mangat@my-aolcc.com</a></li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <h2>Projects</h2>
-          <p>Course work & practice builds</p>
-        </div>
-        <div class="grid grid-3">
-          <!-- Project 1 -->
-          <article class="project">
-            <div class="thumb">
-              <img
-                src="../manmeetportfolio/images/port2.jpg"
-                alt="Landing Page Preview"
-                class="thumb-img"
-              />
-            </div>
-            <div class="content">
-              <h3>
-                <a href="" target="" rel="noreferrer"
-                  >Responsive Landing Page</a
-                >
-              </h3>
-              <p style="color: var(--muted)">
-                A clean, mobile-first landing page using semantic HTML,
-                Flexbox/Grid, and utility classes.
-              </p>
-              <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS Grid</span>
-                <span class="tag">Responsive</span>
-              </div>
-            </div>
-          </article>
-          <!-- Project 2 -->
-          <article class="project">
-            <div class="thumb">
-              <img
-                src="../manmeetportfolio/images/port5.jpg"
-                class="thumb-img"
-                alt="Portfolio preview"
-              />
-            </div>
-            <div class="content">
-              <h3>
-                <a href="" target="" rel="noreferrer"
-                  >Personal Portfolio</a
-                >
-              </h3>
-              <p style="color: var(--muted)">
-                This website! Built with accessible markup, custom properties,
-                and a glassy UI style.
-              </p>
-              <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS Variables</span>
-                <span class="tag">A11y</span>
-              </div>
-            </div>
-          </article>
+    <section id="projects" class="container reveal">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Course work & practice builds</p>
+      </div>
+      <div class="grid grid-3">
+        <!-- Project 1 -->
+        <article class="project reveal">
+          <div class="thumb">
+            <img src="../manmeetportfolio/images/port2.jpg" alt="Landing Page Preview" />
+            <div class="overlay"><button class="viewbtn" onclick="window.open('#', '_blank')">Preview</button></div>
+          </div>
+          <div class="content">
+            <h3><a href="#" target="_blank" rel="noreferrer">Responsive Landing Page</a></h3>
+            <p class="muted">A clean, mobile-first landing page using semantic HTML, Flexbox/Grid, and utility classes.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS Grid</span><span class="tag">Responsive</span></div>
+          </div>
+        </article>
 
-          <!-- Project 3 -->
-            <article class="project">
-            <div class="thumb">
-              <img
-                src="../manmeetportfolio/images/port4.jpg"
-                class="thumb-img"
-                alt="Portfolio preview"
-              />
-            </div>
-            <div class="content">
-              <h3>
-                <a href="" target="" rel="noreferrer"
-                  >Component Library</a
-                >
-              </h3>
-              <p style="color: var(--muted)">
-                TReusable cards, buttons, and forms with consistent spacing,
-                radius, and shadow tokens.
-              </p>
-              <div class="tags">
-                <span class="tag">Design System</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Utilities</span>
-              </div>
-            </div>
-          </article>
-      
-        </div>
+        <!-- Project 2 -->
+        <article class="project reveal">
+          <div class="thumb">
+            <img src="../manmeetportfolio/images/port5.jpg" alt="Portfolio preview" />
+            <div class="overlay"><button class="viewbtn" onclick="window.open('#', '_blank')">Preview</button></div>
+          </div>
+          <div class="content">
+            <h3><a href="#" target="_blank" rel="noreferrer">Personal Portfolio</a></h3>
+            <p class="muted">This website! Built with accessible markup, custom properties, and a glassy UI style.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS Variables</span><span class="tag">A11y</span></div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project reveal">
+          <div class="thumb">
+            <img src="../manmeetportfolio/images/port4.jpg" alt="Component library preview" />
+            <div class="overlay"><button class="viewbtn" onclick="window.open('#', '_blank')">Preview</button></div>
+          </div>
+          <div class="content">
+            <h3><a href="#" target="_blank" rel="noreferrer">Component Library</a></h3>
+            <p class="muted">Reusable cards, buttons, and forms with consistent spacing, radius, and shadow tokens.</p>
+            <div class="tags"><span class="tag">Design System</span><span class="tag">CSS</span><span class="tag">Utilities</span></div>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills">
-      <div class="container">
-        <div class="section-head">
-          <h2>Skills</h2>
-          <p>Tools & technologies</p>
-        </div>
-        <div class="card">
-          <div class="skills">
-            <span class="chip">Semantic HTML5</span>
-            <span class="chip">Modern CSS</span>
-            <span class="chip">Flexbox</span>
-            <span class="chip">CSS Grid</span>
-            <span class="chip">Responsive Design</span>
-            <span class="chip">Accessibility</span>
-            <span class="chip">Git & GitHub</span>
-          </div>
+    <section id="skills" class="container reveal">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>Tools & technologies</p>
+      </div>
+      <div class="card reveal">
+        <div class="skills">
+          <span class="chip">Semantic HTML5</span>
+          <span class="chip">Modern CSS</span>
+          <span class="chip">Flexbox</span>
+          <span class="chip">CSS Grid</span>
+          <span class="chip">Responsive Design</span>
+          <span class="chip">Accessibility</span>
+          <span class="chip">Git & GitHub</span>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>Contact</h2>
-          <p>Let’s build something together</p>
+    <section id="contact" class="container reveal">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Let’s build something together</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <form id="contactForm" action="https://formspree.io/f/your-id" method="POST" novalidate>
+            <div class="form-row">
+              <label class="field">
+                <input type="text" name="name" placeholder=" " required aria-required="true" />
+                <span class="flabel">Name</span>
+              </label>
+              <label class="field">
+                <input type="email" name="email" placeholder=" " required aria-required="true" />
+                <span class="flabel">Email</span>
+              </label>
+            </div>
+            <label class="field">
+              <textarea name="message" placeholder=" " required aria-required="true" rows="5"></textarea>
+              <span class="flabel">Message</span>
+            </label>
+
+            <button type="submit" class="btn" id="sendBtn">Send Message</button>
+            <div id="formStatus" aria-live="polite" style="margin-top:10px"></div>
+            <!-- <p class="muted small" style="margin-top:8px">Tip: Replace the <code>action</code> with your own Formspree or backend endpoint.</p> -->
+          </form>
         </div>
-        <div class="grid grid-2">
-          <div class="card">
-            <form action="https://formspree.io/f/your-id" method="POST">
-              <label>
-                Name
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                />
-              </label>
-              <label>
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </label>
-              <label>
-                Message
-                <textarea
-                  name="message"
-                  placeholder="Tell me about your project"
-                  required
-                ></textarea>
-              </label>
-              <button class="btn" type="submit">Send Message</button>
-            </form>
-            <p style="color: var(--muted); margin-top: 10px">
-              <!-- Tip: Replace the <code>action</code> with your own Formspree or
-              backend endpoint. -->
-            </p>
-          </div>
-          <div class="card">
-            <h3>Elsewhere</h3>
-            <p><a href="mailto:ManmeetSingh.Mangat@my-aolcc.com">ManmeetSingh.Mangat@my-aolcc.com</a></p>
-            <p>
-              <a
-                href="https://github.com/ManmeetMangat"
-                target="_blank"
-                rel="noreferrer"
-                >https://github.com/ManmeetMangat</a
-              >
-            </p>
-            <!-- <p>
-              <a
-                href="https://www.linkedin.com/in/yourprofile"
-                target="_blank"
-                rel="noreferrer"
-                >linkedin.com/in/yourprofile</a
-              >
-            </p> -->
-          </div>
+
+        <div class="card reveal">
+          <h3>Elsewhere</h3>
+          <p><a href="mailto:ManmeetSingh.Mangat@my-aolcc.com" style="color:var(--text)">ManmeetSingh.Mangat@my-aolcc.com</a></p>
+          <p><a href="https://github.com/ManmeetMangat" target="_blank" rel="noreferrer">https://github.com/ManmeetMangat</a></p>
         </div>
       </div>
     </section>
@@ -603,12 +382,157 @@
     <footer>
       <div class="container">
         © <span id="y"></span> Manmeet Singh Mangat • Built with HTML & CSS
+        <div class="socials" style="margin-top:8px">
+          <a href="mailto:ManmeetSingh.Mangat@my-aolcc.com" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="display:block"><path d="M3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 18.5 4h-13A2.5 2.5 0 0 0 3 6.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://github.com/ManmeetMangat" aria-label="GitHub" target="_blank" rel="noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="display:block"><path d="M12 2C7.58 2 4 5.58 4 10c0 3.54 2.29 6.53 5.47 7.58.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 12 6.8c.68.01 1.36.09 2 .26 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.28.24.53.72.53 1.45 0 1.05-.01 1.9-.01 2.16 0 .21.15.46.55.38A8.01 8.01 0 0 0 20 10c0-4.42-3.58-8-8-8z" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </div>
     </footer>
 
     <script>
       // Set current year
-      document.getElementById("y").textContent = new Date().getFullYear();
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      /* Mobile nav toggle */
+      const hamburger = document.querySelector('.hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+      hamburger?.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!expanded));
+        if (mobileNav.style.display === 'none' || mobileNav.style.display === '') {
+          mobileNav.style.display = 'block';
+          mobileNav.setAttribute('aria-hidden', 'false');
+        } else {
+          mobileNav.style.display = 'none';
+          mobileNav.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Close mobile nav when link clicked
+      mobileNav?.querySelectorAll('a')?.forEach(a => a.addEventListener('click', ()=> {
+        mobileNav.style.display='none';
+        hamburger.setAttribute('aria-expanded','false');
+      }));
+
+      /* Active nav highlight on scroll using IntersectionObserver */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('nav.links a');
+      const observerOptions = {root:null, rootMargin:'-20% 0px -40% 0px', threshold:0};
+      const sectionObserver = new IntersectionObserver((entries)=>{
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            const id = entry.target.id;
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === ('#'+id));
+            });
+          }
+        });
+      }, observerOptions);
+      sections.forEach(s => sectionObserver.observe(s));
+
+      /* Scroll reveal for elements with .reveal */
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add('in-view'); revealObserver.unobserve(e.target); }
+        });
+      }, {threshold:0.12});
+      reveals.forEach(r => revealObserver.observe(r));
+
+      /* Avatar tilt effect */
+      const avatar = document.getElementById('avatar');
+      if (avatar){
+        avatar.addEventListener('mousemove', (e)=>{
+          const rect = avatar.getBoundingClientRect();
+          const cx = rect.left + rect.width/2;
+          const cy = rect.top + rect.height/2;
+          const dx = (e.clientX - cx) / rect.width;
+          const dy = (e.clientY - cy) / rect.height;
+          const rx = (-dy * 6).toFixed(2);
+          const ry = (dx * 8).toFixed(2);
+          avatar.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+          avatar.style.boxShadow = `0 20px 50px rgba(2,8,12,0.6)`;
+        });
+        avatar.addEventListener('mouseleave', ()=> {
+          avatar.style.transform = '';
+          avatar.style.boxShadow = '';
+        });
+      }
+
+      /* Project card subtle parallax on mouse (optional) */
+      document.querySelectorAll('.project').forEach(card=>{
+        card.addEventListener('mousemove', (e)=>{
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          card.style.transform = `translateY(-6px) rotateX(${(0.5 - y) * 1}deg) rotateY(${(x - 0.5) * 2}deg)`;
+          card.style.boxShadow = '0 22px 50px rgba(2,8,12,0.6)';
+        });
+        card.addEventListener('mouseleave', ()=> {
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        });
+      });
+
+      /* Contact form validation + demo submit handling */
+      const form = document.getElementById('contactForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      form?.addEventListener('submit', (ev)=>{
+        ev.preventDefault();
+        formStatus.textContent = '';
+        const fd = new FormData(form);
+        const name = (fd.get('name')||'').toString().trim();
+        const email = (fd.get('email')||'').toString().trim();
+        const message = (fd.get('message')||'').toString().trim();
+
+        let errors = [];
+        if (name.length < 2) errors.push('Please enter your name (min 2 chars).');
+        if (!validateEmail(email)) errors.push('Please enter a valid email.');
+        if (message.length < 8) errors.push('Message is too short (min 8 chars).');
+
+        if (errors.length){
+          formStatus.innerHTML = errors.map(e=>`<div class="error">${e}</div>`).join('');
+          return;
+        }
+
+        // Demo: if Formspree placeholder detected, don't actually send — show demo success
+        const action = form.getAttribute('action') || '';
+        if (action.includes('your-id') || action.includes('your-id')){
+          formStatus.innerHTML = '<div class="success">Thanks! (Demo) Your message was received — replace the form action with your endpoint to actually send.</div>';
+          form.reset();
+          // reset floating labels visual state by focusing then blurring inputs to update :placeholder-shown
+          document.querySelectorAll('label.field input, label.field textarea').forEach(el=>el.blur());
+          return;
+        }
+
+        // If a real action is set, perform a normal fetch POST (this will navigate/submit as normal).
+        // We will attempt to send via fetch and show result — but fallback to regular submission to let server handle it.
+        fetch(action, {method:'POST', body:fd})
+          .then(res => {
+            if (res.ok) {
+              formStatus.innerHTML = '<div class="success">Message sent — thank you!</div>'; form.reset();
+            } else {
+              formStatus.innerHTML = '<div class="error">Submission failed. Please try again or contact directly via email.</div>';
+            }
+          }).catch(err=>{
+            console.error(err);
+            // fallback: allow normal form submit
+            formStatus.innerHTML = '<div class="error">Could not submit (network). Please try again or contact directly.</div>';
+          });
+      });
+
+      // Close mobile nav on ESC
+      window.addEventListener('keydown', (e)=> {
+        if (e.key === 'Escape' && mobileNav && mobileNav.style.display === 'block') {
+          mobileNav.style.display = 'none';
+          hamburger.setAttribute('aria-expanded','false');
+        }
+      });
     </script>
   </body>
 </html>
